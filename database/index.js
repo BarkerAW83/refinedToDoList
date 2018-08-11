@@ -8,11 +8,24 @@ db.once('open', function() {
   console.log('toDoList DB connected!')
 });
 
-var toDoSchema = new mongoose.Schema({
-  name: String,
-  completed: {type: Boolean, default: false}
+var refinedToDoSchema = new mongoose.Schema({
+  task: String,
+  completed: {type: Boolean, unique: true, default: false}
 });
 
-var Kitten = mongoose.model('Kitten', kittySchema);
+var RefinedToDo = mongoose.model('RefinedToDo', refinedToDoSchema);
+
+// var test = new RefinedToDo({ task: 'first task' });
+
+// test.save(function (err, test) {
+//   if (err) {
+//     return console.error(err);
+//   }
+//   else{
+//     console.log(test, ': HAS BEEN SAVED')
+//   }
+// });
+
 
 module.exports.db = db;
+module.exports.RefinedToDo = RefinedToDo;
