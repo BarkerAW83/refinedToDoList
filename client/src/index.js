@@ -23,10 +23,12 @@ class App extends React.Component {
       });           
   }
   render() {
+
+    var mappedTodos = this.state.todos.map((todo) => <li key={todo._id}>{todo.task}</li>)
     return (
       <div>
         <h1>refined To-Do List</h1>
-        <span></span>
+        <ul>{mappedTodos}</ul>
       </div>
     );
   }
