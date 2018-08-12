@@ -9,22 +9,11 @@ db.once('open', function() {
 });
 
 var refinedToDoSchema = new mongoose.Schema({
-  task: String,
-  completed: {type: Boolean, unique: true, default: false}
+  task: {type: String, unique: true},
+  completed: {type: Boolean, default: false}
 });
 
 var RefinedToDo = mongoose.model('RefinedToDo', refinedToDoSchema);
-
-// var test = new RefinedToDo({ task: 'first task' });
-
-// test.save(function (err, test) {
-//   if (err) {
-//     return console.error(err);
-//   }
-//   else{
-//     console.log(test, ': HAS BEEN SAVED')
-//   }
-// });
 
 
 module.exports.db = db;

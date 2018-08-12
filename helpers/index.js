@@ -3,7 +3,7 @@ var RefinedToDo = require('../database/index.js').RefinedToDo
 
 db;
 
-// var test = new RefinedToDo({ task: 'first task' });
+var test = new RefinedToDo({ task: 'second task' });
 
 // test.save(function (err, test) {
 //   if (err) {

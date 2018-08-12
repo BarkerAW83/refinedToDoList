@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, '/../client/dist/')))
 
 //app.get('/', (req, res) => res.send('reactBoiler is live!')) //Will prove server connects to client side
 
-app.get('/test', function(req, res){
+app.get('/todos', function(req, res){
   getAll(req, res);
 })
 
