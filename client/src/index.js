@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
+import Add from './add.js'
 
 class App extends React.Component {
   constructor(props){
@@ -16,7 +17,7 @@ class App extends React.Component {
   getAll(){
     axios.get('/todos')
       .then((response) => {
-        this.setState({todos: response.data}, ()=> {console.log('NEW TODOS: ', this.state.todos)})
+        this.setState({todos: response.data})
       })
       .catch(function (error) {
         console.log(error);
@@ -29,6 +30,7 @@ class App extends React.Component {
       <div>
         <h1>refined To-Do List</h1>
         <ul>{mappedTodos}</ul>
+        <Add/>
       </div>
     );
   }
