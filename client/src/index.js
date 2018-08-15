@@ -11,6 +11,7 @@ class App extends React.Component {
     }
     this.getAll = this.getAll.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
+    this.deleteCompleted = this.deleteCompleted.bind(this);
   }
   componentDidMount(){
     this.getAll()
@@ -24,9 +25,7 @@ class App extends React.Component {
         console.log(error);
       });           
   }
-  toggleComplete(toggleID, completed){ //whole function needs work
-
-    //console.log('THE TOGGLEID IS: ', toggleID, 'THE TODOS ARE: ', this.state.todos)
+  toggleComplete(toggleID, completed){ 
     
     axios.put('/todos', {
         params: {
@@ -43,6 +42,17 @@ class App extends React.Component {
       }); 
 
   }
+  deleteCompleted(){
+
+    axios.delete('/todos')
+      .then((response) => {
+        console.log(response);
+        window.location.reload()
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+  }
   render() {
 
     // var mappedTodos = this.state.todos.map((todo) =>
@@ -50,18 +60,25 @@ class App extends React.Component {
 
     var mappedTodos = this.state.todos.map((todo) => {
       if (!todo.completed){
-        return <li key={todo._id} onClick={()=>this.toggleComplete(todo._id, todo.completed)}>{todo.task}</li>
+        return (
+          <li key={todo._id} onClick={()=>this.toggleComplete(todo._id, todo.completed)} 
+          style={{fontSize: '30px'}}>{todo.task}</li>
+        )
       }
       else{
-        return <li key={todo._id} onClick={()=>this.toggleComplete(todo._id, todo.completed)} style={{textDecorationLine: 'line-through'}}>{todo.task}</li>
+        return( 
+          <li key={todo._id} onClick={()=>this.toggleComplete(todo._id, todo.completed)} 
+          style={{textDecorationLine: 'line-through', fontSize: '30px'}}>{todo.task}</li>
+        )
       }
     })
 
     return (
       <div>
         <h1>Refined To-Do List</h1>
-        <ul>{mappedTodos}</ul>
         <Add tasks={this.state.todos}/>
+        <ul>{mappedTodos}</ul>
+        <div><button onClick={()=>this.deleteCompleted()}>Clear Completed</button></div>
       </div>
     );
   }
@@ -75,14 +92,3 @@ ReactDOM.render(<App/>,document.getElementById('app'));
 //Other suggested scripts
 //mongod = runs mongodb
 //mongo --host 127.0.0.1:27017 = connects mongo to the localhost
-
-// var mappedTodos = this.state.todos.map(function(todo){
-//   if (!todo.complete){
-//     <li key={todo._id} onClick={()=>{this.toggleComplete(todo._id, todo.completed)}}>{todo.task}</li>
-//   }
-//   else{
-//     <li key={todo._id} onClick={()=>{this.toggleComplete(todo._id, todo.completed)}} style={{textDecorationLine: 'line-through'}}>{todo.task}</li>
-//   }
-// })
-
-// {/* <li key={todo._id} onClick={()=>{this.toggleComplete(todo._id, todo.completed)}}>{todo.task}</li>) */}

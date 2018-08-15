@@ -38,11 +38,22 @@ var toDoToggle = function(req, res){
       console.log(error)
       res.status(500).send(error)
     })
-
-
-//console.log(req.body.params.toggleID)
 }
+
+var toDoDelete = function(req, res){
+
+  RefinedToDo.deleteMany({completed: true})
+    .then((results) => {
+      res.status(200).send(results)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).send(error)
+    })
+
+  }
 
 module.exports.getAll = getAll;
 module.exports.toDoSave = toDoSave;
 module.exports.toDoToggle = toDoToggle;
+module.exports.toDoDelete = toDoDelete;
