@@ -4,6 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const getAll = require('../helpers/index.js').getAll;
 const toDoSave = require('../helpers/index.js').toDoSave;
+const toDoToggle = require('../helpers/index.js').toDoToggle;
 
 app.use(bodyParser.json())
 
@@ -19,6 +20,8 @@ app.post('/todos', function(req, res){
   toDoSave(req, res)
 })
 
-
+app.put('/todos', function(req, res){
+  toDoToggle(req, res)
+})
 
 app.listen(3000, () => console.log('refined To-Do List server listening on port 3000'))

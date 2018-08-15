@@ -17,6 +17,8 @@ class Add extends React.Component {
     this.setState({searchText: event.target.value})
   }
   handleSubmit(event){
+
+    //event.preventDefault();
     
     axios.post('/todos', {
         params: {
@@ -24,7 +26,8 @@ class Add extends React.Component {
         }
       })
       .then((response) => {
-        console.log(response);
+        //console.log(response);
+        console.log(this.props)
       })
       .catch((error) => {
         console.log(error);
