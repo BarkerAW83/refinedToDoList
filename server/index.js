@@ -31,7 +31,7 @@ app.delete('/todos', function(req, res){
 
 //app.listen(3000, () => console.log('refined To-Do List server listening on port 3000')) // for local app use
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 
 // app.listen(port, () => console.log(`refined To-Do List server listening on port ${port}`)) // for deployment, needs work app use
 
