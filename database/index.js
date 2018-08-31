@@ -15,7 +15,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
-  console.log('toDoList DB connected!', ', user is: ', user, ', dbToken is: ', dbToken)
+  console.log('toDoList DB connected!')
+
 });
 
 var refinedToDoSchema = new mongoose.Schema({
