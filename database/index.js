@@ -1,5 +1,12 @@
+const user = require('../config.js').user;
+const dbToken = require('../config.js').dbToken;
+
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/refinedToDoList', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/refinedToDoList', { useNewUrlParser: true }); //database for local use
+
+mongoose.connect(`mongodb://${user}:${dbToken}@ds137862.mlab.com:37862/barkeraw83refinedtodo`, { useNewUrlParser: true });
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
