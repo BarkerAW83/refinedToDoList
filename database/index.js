@@ -1,5 +1,5 @@
-const user = require('../config.js').user;
-const dbToken = require('../config.js').dbToken;
+//const user = require('../config.js').user; //only use for local, not deployment
+//const dbToken = require('../config.js').dbToken; // only use for local, not deployment
 
 
 var mongoose = require('mongoose');
